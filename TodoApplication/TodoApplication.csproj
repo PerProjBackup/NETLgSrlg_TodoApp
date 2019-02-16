@@ -69,6 +69,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="WpfLogging\FlogDetail.cs" />
+    <Compile Include="WpfLogging\PerfTracker.cs" />
+    <Compile Include="WpfLogging\WpfLogger.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

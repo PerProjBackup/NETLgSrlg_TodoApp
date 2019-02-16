@@ -91,14 +91,22 @@
     <Compile Include="Service.cs" />
     <Compile Include="ToDoDbContext.cs" />
     <Compile Include="ToDoItem.cs" />
+    <Compile Include="WcfLogging\ExceptionPostingHelpers.cs" />
+    <Compile Include="WcfLogging\FlogDetail.cs" />
+    <Compile Include="WcfLogging\FloggingBehaviorExtension.cs" />
+    <Compile Include="WcfLogging\FloggingErrorHandler.cs" />
+    <Compile Include="WcfLogging\FloggingOperationBehavior.cs" />
+    <Compile Include="WcfLogging\FloggingParameterInspector.cs" />
+    <Compile Include="WcfLogging\FloggingServiceBehavior.cs" />
+    <Compile Include="WcfLogging\WcfLogging.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WcfLogging\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

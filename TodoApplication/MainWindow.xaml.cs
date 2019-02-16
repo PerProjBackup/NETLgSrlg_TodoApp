@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TodoApplication.TodoServiceReference;
+using TodoApplication.WpfLogging;
 
 namespace TodoApplication
 {
@@ -35,15 +36,20 @@ namespace TodoApplication
 
     private void btnAlert_Click(object sender, RoutedEventArgs e)
     {
+      WpfLogger.LogUsage("Button clicked",
+          new Dictionary<string, object> { { "moreStuff", "sample text" } });
       MessageBox.Show("Nicely done!");
+      throw new Exception("Something really bad happened!!");
     }
 
     private void btnGet_Click(object sender, RoutedEventArgs e)
     {
+      var tracker = new PerfTracker("getting all todos");
       var ItemList = new List<ToDoItem>();
       using (var svc = new ServiceClient())
         ItemList = svc.GetToDoList();
       LbTodoItems.ItemsSource = ItemList;
+      tracker.Stop();
     }
 
     private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -54,6 +60,8 @@ namespace TodoApplication
 
       selectedItem.Item = txtItemNote.Text;
       selectedItem.Completed = chkCompleted.IsChecked.Value;
+
+      WpfLogger.LogDiagnostic("Updating todo...", selectedItem);
 
       using (var svc = new ServiceClient())
         svc.UpdateItem(selectedItem);
